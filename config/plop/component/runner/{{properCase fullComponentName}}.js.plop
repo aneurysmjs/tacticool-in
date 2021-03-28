@@ -1,0 +1,19 @@
+import React from 'react';
+
+{{#if isLastComponent }}
+import {{pascalCase nextComponent }} from '../{{pascalCase nextComponent }}';
+
+{{/if}}
+import './{{pascalCase fullComponentName }}.scss';
+
+const {{ pascalCase fullComponentName }} = () => (
+  <div className="{{ camelCase fullComponentName }}">
+    {{ pascalCase fullComponentName }}
+
+    {{#if isLastComponent }}
+    <{{pascalCase nextComponent }} />
+    {{/if}}
+  </div>
+);
+
+export default {{ pascalCase fullComponentName }};
