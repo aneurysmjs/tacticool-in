@@ -1,15 +1,7 @@
-const paths = require('./config/paths');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
+const postcssImport = require('postcss-import');
 
 module.exports = {
-  plugins: [
-    // eslint-disable-next-line global-require
-    require('postcss-import')({
-      path: [paths.src],
-    }),
-    // eslint-disable-next-line global-require
-    // require('postcss-assets')({
-    //   basePath: './assets',
-    // }),
-  ],
-  sourceMap: true,
+  plugins: [tailwindcss, autoprefixer, postcssImport],
 };

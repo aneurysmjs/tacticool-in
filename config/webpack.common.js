@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const React = require('react');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer'); // help tailwindcss to work
 
 const paths = require('./paths');
 
@@ -65,7 +67,7 @@ module.exports = (mode) => {
                 // @se https://github.com/webpack-contrib/postcss-loader#postcssoptions
                 // @see https://github.com/webpack-contrib/postcss-loader/blob/master/CHANGELOG.md#400-2020-09-07
                 postcssOptions: {
-                  plugins: [require('autoprefixer')],
+                  plugins: [tailwindcss, autoprefixer],
                 },
               },
             },
