@@ -3,16 +3,13 @@
 @import '~styles/variables';
 
 .user-menu {
-  align-items: center;
-  display: flex;
-  padding: 0 px-to-rem(16);
+  @apply flex items-center px-4;
 
   @include element(cart-icon) {
-    align-items: center;
-    display: flex;
+    @apply flex items-center;
   }
 
   @include element(cart-quantity) {
-    margin-left: px-to-rem(5);
+    @apply ml-2;
   }
 }

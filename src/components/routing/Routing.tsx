@@ -8,6 +8,7 @@ import Layout from '~/components/core/Layout';
 
 import { Home } from '~/components/pages/Home';
 import { useAuth } from '~/providers/AuthProvider';
+import './Routing.scss';
 
 const Auth = loadable(() => import('~/components/pages/Auth/Auth'));
 
@@ -15,7 +16,7 @@ const Routing = (): ReactElement => {
   const [state] = useAuth();
 
   return (
-    <main>
+    <main className="routing">
       <Layout>
         <Route exact component={Home} path="/" />
         <Route exact component={Auth} path="/auth" />

@@ -1,0 +1,9 @@
+@import '~styles/mixins';
+
+.layout {
+  @apply flex flex-col h-screen;
+
+  @include element(content) {
+    @apply flex-grow;
+  }
+}

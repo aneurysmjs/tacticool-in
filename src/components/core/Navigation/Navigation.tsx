@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import './Navigation.scss';
+
 type Links = Array<{
   id: string;
   path: string;
@@ -11,7 +13,7 @@ const links: Links = [];
 
 function Navigation(): ReactElement {
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navigation">
       <NavLink className="navbar-brand" to="/">
         Shop
       </NavLink>
