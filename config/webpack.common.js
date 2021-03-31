@@ -96,6 +96,15 @@ module.exports = (mode) => {
             },
           ],
         },
+        {
+          test: /\.(mp4|webm)$/,
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]',
+            },
+          },
+        },
       ],
     },
     plugins: [
