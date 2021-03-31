@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactType, ReactElement, HTMLProps } from 'react';
+import { ReactNode, ReactType, ReactElement, HTMLProps } from 'react';
 
 import classNames from 'classnames';
 

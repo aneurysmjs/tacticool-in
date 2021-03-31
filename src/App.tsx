@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import Routing from '~/components/routing';
 import { AuthProvider } from '~/providers/AuthProvider';

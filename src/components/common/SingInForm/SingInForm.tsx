@@ -1,4 +1,4 @@
-import React, { ReactElement, Dispatch, useCallback } from 'react';
+import { ReactElement, Dispatch, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase';
 

@@ -1,4 +1,4 @@
-import React, { Component, ComponentType, ReactElement, ReactNode } from 'react';
+import  { Component, ComponentType, ReactElement, ReactNode } from 'react';
 import ErrorBoundaryFallbackComponent from './ErrorBoundaryFallbackComponent';
 
 type PropsType = {

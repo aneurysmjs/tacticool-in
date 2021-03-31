@@ -74,6 +74,8 @@
       "ignoreCase": false,
       "noSortAlphabetically": false,
       "reservedFirst": true
-    }]
+    }],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

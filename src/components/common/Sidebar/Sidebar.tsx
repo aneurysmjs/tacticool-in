@@ -1,12 +1,4 @@
-import React, {
-  Fragment,
-  useEffect,
-  useRef,
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useState,
-} from 'react';
+import { Fragment, useEffect, useRef, ReactElement, ReactNode, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import Icon from '~/components/base/Icon';

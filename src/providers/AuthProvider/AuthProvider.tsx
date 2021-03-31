@@ -1,11 +1,4 @@
-import React, {
-  useEffect,
-  useContext,
-  createContext,
-  ReactNode,
-  Dispatch,
-  ReactElement,
-} from 'react';
+import { useEffect, useContext, createContext, ReactNode, Dispatch, ReactElement } from 'react';
 
 import firebase from 'firebase';
 

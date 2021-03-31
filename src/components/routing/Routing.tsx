@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import React, { ComponentType, ReactElement } from 'react';
+import { ComponentType, ReactElement } from 'react';
 import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
 
 import loadable from '@loadable/component';

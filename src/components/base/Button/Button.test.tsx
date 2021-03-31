@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Button, { PropsType } from './index';
 

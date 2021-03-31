@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 
 import Footer from '~/components/core/Footer';
 import Header from '~/components/core/Header';

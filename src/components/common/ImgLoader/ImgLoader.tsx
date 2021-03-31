@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, ReactElement } from 'react';
+import { useState, useEffect, memo, ReactElement } from 'react';
 
 import Spinner from '~/components/base/Spinner';
 

@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, ReactElement, Ref, ReactType } from 'react';
+import { InputHTMLAttributes, ReactElement, Ref, ReactType } from 'react';
 import classNames from 'classnames';
 
 export type InputType =

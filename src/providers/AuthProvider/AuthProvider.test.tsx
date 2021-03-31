@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, ReactElement } from 'react';
+import { createContext, useContext, ReactNode, ReactElement } from 'react';
 import { renderHook, act, RenderHookResult } from '@testing-library/react-hooks';
 
 import { auth } from '~/firebase-config';

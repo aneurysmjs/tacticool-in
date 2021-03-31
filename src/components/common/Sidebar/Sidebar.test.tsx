@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { render, cleanup, fireEvent, RenderResult, act } from '@testing-library/react';
 
 import Sidebar from './Sidebar';

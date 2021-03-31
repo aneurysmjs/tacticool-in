@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 type PropsType = {
   componentStack: string;
@@ -9,16 +9,16 @@ const toTitle = (error: Error, componentStack: string): string =>
   `${error.toString()}\n\nThis is located at:${componentStack}`;
 
 const style = {
-  'align-ttems': 'center',
-  'box-sizing': 'border-box',
+  'alignTtems': 'center',
+  'boxSizing': 'border-box',
   color: '#FFF',
   cursor: 'help',
   display: 'flex',
-  'flex-direction': 'column',
+  'flexDirection': 'column',
   height: '100%',
   maxHeight: '100vh',
   maxWidth: '100vw',
-  'text-align': 'center',
+  'textAlign': 'center',
   width: '100%',
 };
 
