@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+export type NavLink = {
+  id: number;
+  path: string;
+  name: string;
+};
+
+export type NavLinks = Array<NavLink>;
+
 export type valueof<T> = T[keyof T];
 
 export interface BaseAction {

@@ -1,37 +1,93 @@
-import React, { ReactElement } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import UserMenu from '~/components/core/UserMenu';
+import { NavLinks } from '~/shared/types';
 import './Navigation.scss';
 
-type Links = Array<{
-  id: string;
-  path: string;
-  name: string;
-}>;
+const links: NavLinks = [
+  {
+    id: 0,
+    name: 'Home',
+    path: '/',
+  },
+  {
+    id: 1,
+    name: 'Mods',
+    path: '/mods',
+  },
+  {
+    id: 2,
+    name: 'Zombie',
+    path: '/zombie',
+  },
+  {
+    id: 3,
+    name: 'Testing',
+    path: '/testing',
+  },
+];
 
-const links: Links = [];
+const navLinks = links.length
+  ? links.map(({ path, name, id }) => (
+      <NavLink
+        key={id}
+        activeClassName="navigation__link--active"
+        className="navigation__link"
+        role="menuitem"
+        to={`/${path}`}
+      >
+        {name}
+      </NavLink>
+    ))
+  : null;
 
 function Navigation(): ReactElement {
+  const [isMobileMenuOpen, setMobileMenu] = useState(false);
   return (
     <nav className="navigation">
-      <NavLink className="navbar-brand" to="/">
-        Shop
-      </NavLink>
-      <button className="navbar-toggler navbar-toggler-right" type="button">
-        <span className="navbar-toggler-icon" />
-      </button>
-      <div className="collapse navbar-collapse">
-        <ul className="navbar-nav mr-auto">
+      <div className="navigation__container">
+        <div className="navigation__content">
+          <div className="navigation__mobile-menu">
+            <button
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              className="navigation__mobile-menu-button"
+              type="button"
+              onClick={(): void => setMobileMenu(!isMobileMenuOpen)}
+            >
+              <span className="sr-only">Open main menu</span>
+
+              <FontAwesomeIcon icon={faBars} />
+            </button>
+          </div>
+          <div className="navigation__desktop-nav">
+            <div className="navigation__desktop-nav-title">Tacticool.in</div>
+            <div className="navigation__desktop-nav-container">
+              <div className="navigation__desktop-nav-wrapper">{navLinks}</div>
+            </div>
+          </div>
+          <UserMenu />
+        </div>
+      </div>
+
+      <div className="navigation__mobile-nav" id="mobile-menu">
+        <div className="navigation__mobile-nav-wrapper">
           {links.length
             ? links.map(({ path, name, id }) => (
-                <li key={id} className="nav-item">
-                  <NavLink key={id} activeClassName="active" className="nav-link" to={`/${path}`}>
-                    {name}
-                  </NavLink>
-                </li>
+                <NavLink
+                  key={id}
+                  activeClassName="navigation__link--active"
+                  className="navigation__mobile-link"
+                  role="menuitem"
+                  to={`/${path}`}
+                >
+                  {name}
+                </NavLink>
               ))
             : null}
-        </ul>
+        </div>
       </div>
     </nav>
   );

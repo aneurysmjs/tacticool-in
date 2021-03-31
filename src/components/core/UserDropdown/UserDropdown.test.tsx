@@ -3,7 +3,7 @@ import { act, cleanup, RenderResult, fireEvent } from '@testing-library/react';
 
 import renderWithFirebase from '~/utils/renderWithFirebase';
 
-import UserMenu from './UserMenu';
+import UserDropdown from './UserDropdown';
 
 afterEach(cleanup);
 
@@ -11,12 +11,12 @@ let testRenderer = {} as RenderResult;
 
 beforeEach(async () => {
   await act(async () => {
-    testRenderer = renderWithFirebase(<UserMenu />);
+    testRenderer = renderWithFirebase(<UserDropdown />);
   });
 });
 
-describe('UserMenu', () => {
-  it(`tests UserMenu's basics`, () => {
+describe('UserDropdown', () => {
+  it(`tests UserDropdown's basics`, () => {
     const { container } = testRenderer;
     const userMenu = container.firstChild as HTMLElement;
 
