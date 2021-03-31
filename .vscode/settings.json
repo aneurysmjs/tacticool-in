@@ -1,0 +1,7 @@
+{
+  "css.validate": false, // Disable css built-in lint
+  "scss.validate": false,
+  "stylelint.enable": true, // Enable sytlelint
+  // @link https://stackoverflow.com/a/61333686/5378393
+  "css.customData": [".vscode/css_custom_data.json"]
+}
