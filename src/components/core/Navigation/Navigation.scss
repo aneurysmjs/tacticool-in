@@ -4,18 +4,16 @@
   @apply bg-gray-800;
 }
 
-.navigation__container { 
-  @apply
-    lg:px-8
+.navigation__container {
+  @apply lg:px-8
     max-w-7xl
     mx-auto
     px-2
-    sm:px-6
+    sm:px-6;
 }
 
 .navigation__content {
-  @apply
-    flex
+  @apply flex
     h-16
     items-center
     justify-between
@@ -23,18 +21,16 @@
 }
 
 .navigation__mobile-menu {
-  @apply
-    absolute
+  @apply absolute
     inset-y-0
     left-0
     flex
     items-center
-    sm:hidden
+    sm:hidden;
 }
 
 .navigation__mobile-menu-button {
-  @apply
-    focus:outline-none
+  @apply focus:outline-none
     focus:ring-2
     focus:ring-inset
     focus:ring-white
@@ -45,19 +41,18 @@
     justify-center
     p-2
     rounded-md
-    text-white
+    text-white;
 }
 
 .navigation__link {
-  @apply
-    font-medium
+  @apply font-medium
     hover:bg-gray-700
     hover:text-white
     px-3
     py-2
     rounded-md
     text-gray-300
-    text-sm
+    text-sm;
 }
 
 .navigation__link--active {
@@ -69,24 +64,22 @@
  */
 
 .navigation__desktop-nav {
-  @apply
-    flex
+  @apply flex
     flex-1
     items-center
     justify-center
     sm:items-stretch
-    sm:justify-start
+    sm:justify-start;
 }
 
 .navigation__desktop-nav-title {
-  @apply
-    flex
+  @apply flex
     hidden
     items-center
     sm:flex
     sm:ml-6
     text-center  
-    text-white
+    text-white;
 }
 
 .navigation__desktop-nav-container {
@@ -102,25 +95,19 @@
  */
 
 .navigation__mobile-nav {
-  @apply sm:hidden
+  @apply sm:hidden;
 }
 
 .navigation__mobile-nav-wrapper {
-  @apply px-2 pt-2 pb-3 space-y-1
+  @apply px-2 pt-2 pb-3 space-y-1;
 }
 
 .navigation__mobile-link {
-  @apply
-    block
+  @apply block
     font-medium
     px-3
     py-2
     rounded-md
     text-base
-    text-white
+    text-white;
 }
-
-
-
-
-

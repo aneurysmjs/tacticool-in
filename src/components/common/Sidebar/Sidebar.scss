@@ -10,10 +10,10 @@ $sidebar-width: px-to-rem(300);
   top: 0;
   height: 100%;
   padding: 1rem;
-  transition: all .2s cubic-bezier(.17, .67, .83, .67);
+  transition: all 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
   width: $sidebar-width;
   z-index: 10;
-  
+
   @include modifier(left) {
     left: #{-$sidebar-width};
   }
@@ -31,7 +31,7 @@ $sidebar-width: px-to-rem(300);
   }
 
   @include element(overlay) {
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, 0.4);
     height: 100%;
     left: 0;
     position: fixed;
@@ -40,22 +40,30 @@ $sidebar-width: px-to-rem(300);
     z-index: 9;
 
     @include modifier(fade-in) {
-      animation: fadeIn .2s linear forwards;
+      animation: fadeIn 0.2s linear forwards;
     }
 
     @include modifier(fade-out) {
-      animation: fadeOut .2s linear forwards;
+      animation: fadeOut 0.2s linear forwards;
     }
   }
 
   @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   @keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   @include element(header) {

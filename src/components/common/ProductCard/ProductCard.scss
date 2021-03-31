@@ -7,16 +7,15 @@
   padding-top: 100%;
 
   @include element(image) {
-   
   }
-  
+
   @include element(image--hovered) {
     position: absolute;
     top: 0;
     left: 0;
     display: none;
   }
-  
+
   @include element(overlay) {
     background: #000000;
     opacity: 0;
@@ -27,13 +26,13 @@
     transition: opacity 0.3s ease;
     width: 100%;
   }
-  
+
   @include element(description) {
     color: #505050;
     text-align: center;
     font-size: 18px;
   }
-  
+
   @include element(description--overlay) {
     align-items: center;
     color: #ffffff;

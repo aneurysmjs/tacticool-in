@@ -15,7 +15,9 @@
     "coverage:open": "open coverage/lcov-report/index.html",
     "test:u": "npm t -- -u",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "plop": "plop --plopfile config/plop/plopfile.js"
+    "plop": "plop --plopfile config/plop/plopfile.js",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "stylelint": "stylelint **/*.scss"
   },
   "config": {
     "commitizen": {
@@ -78,6 +80,11 @@
     "script-ext-html-webpack-plugin": "2.1.5",
     "semantic-release": "17.4.2",
     "style-loader": "2.0.0",
+    "stylelint": "13.12.0",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-recommended": "4.0.0",
+    "stylelint-prettier": "1.2.0",
+    "stylelint-scss": "3.19.0",
     "tailwindcss": "2.0.4",
     "typescript": "4.2.3",
     "url-loader": "4.1.1",

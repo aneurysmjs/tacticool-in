@@ -10,9 +10,9 @@
     $remValues: #{$remValues + $value};
 
     @if $i < $max {
-      $remValues: #{$remValues + " "};
+      $remValues: #{$remValues + ' '};
     }
-  } 
-  
-  #{$property}: $remValues; 
+  }
+
+  #{$property}: $remValues;
 }
