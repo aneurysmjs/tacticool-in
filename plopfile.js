@@ -1,11 +1,11 @@
-const complement = require ('ramda/src/complement');
+const complement = require('ramda/src/complement');
 
-const components = './src/app/components';
-const providers = './src/app/providers';
+const components = './src/components';
+const providers = './src/providers';
 
-const checkComponentType = checker => ({ componentType }) => checker(componentType);
+const checkComponentType = (checker) => ({ componentType }) => checker(componentType);
 
-const isFunctional =  (componentType) => componentType === 'functional';
+const isFunctional = (componentType) => componentType === 'functional';
 const isProvider = (componentType) => componentType === 'provider';
 
 module.exports = function plopFn(plop) {
@@ -20,27 +20,19 @@ module.exports = function plopFn(plop) {
       {
         type: 'list',
         name: 'componentType',
-        message: 'Choose component\'s type',
-        choices: ['functional', 'provider', 'class'],
+        message: "Choose component's type",
+        choices: ['functional', 'provider'],
       },
       {
         type: 'list',
         name: 'componentRole',
-        message: 'Choose component\'s role',
+        message: "Choose component's role",
         choices: ['base', 'core', 'shared'],
         default: 'shared',
-        when: checkComponentType(complement(isProvider))
-      },
-      {
-        type: 'confirm',
-        name: 'connectToRedux',
-        message: 'Do you want the component to be connected to Redux?',
-        default: false,
-        when: checkComponentType(complement(isProvider)) || checkComponentType(complement(isFunctional))
+        when: checkComponentType(complement(isProvider)),
       },
     ],
     actions({ componentType, componentRole }) {
-      const prefix = isFunctional(componentType) ? 'functional-' : 'class-';
       const role = componentRole;
 
       const componentActions = [
@@ -52,7 +44,7 @@ module.exports = function plopFn(plop) {
         {
           type: 'add',
           path: `${components}/${role}/{{properCase componentName}}/{{properCase componentName}}.tsx`,
-          templateFile: `./config/plop/component/${prefix}component.tsx.plop`,
+          templateFile: `./config/plop/component/component.tsx.plop`,
         },
         {
           type: 'add',
@@ -82,13 +74,13 @@ module.exports = function plopFn(plop) {
           path: `${providers}/{{properCase componentName}}Provider/{{properCase componentName}}Provider.test.tsx`,
           templateFile: './config/plop/provider/provider.test.tsx.plop',
         },
-      ]
+      ];
 
       let actions = [];
 
       if (isFunctional(componentType)) {
         actions = componentActions;
-      } else if(isProvider(componentType)) {
+      } else if (isProvider(componentType)) {
         actions = providerActions;
       }
 

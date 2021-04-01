@@ -1,0 +1,13 @@
+import { renderHook } from '@testing-library/react-hooks';
+
+import { use{{pascalCase componentName}}Provider, {{pascalCase componentName}}Provider } from './{{pascalCase componentName}}Provider';
+
+describe('{{pascalCase componentName}}Provider test', () => {
+  it('should get value from context provider', () => {
+    const wrapper = {{pascalCase componentName}}Provider;
+
+    const { result } = renderHook(() => use{{pascalCase componentName}}Provider(), { wrapper });
+
+    expect(result.current).toStrictEqual({ {{camelCase componentName}}: null });
+  });
+});

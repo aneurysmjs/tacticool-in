@@ -15,7 +15,7 @@
     "coverage:open": "open coverage/lcov-report/index.html",
     "test:u": "npm t -- -u",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "plop": "plop --plopfile config/plop/plopfile.js",
+    "plop": "plop",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "stylelint": "stylelint **/*.scss"
   },

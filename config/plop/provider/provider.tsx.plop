@@ -1,0 +1,21 @@
+import { createContext, useContext, ReactNode, ReactElement } from 'react';
+
+interface PropTypes {
+  children?: ReactNode;
+}
+
+interface {{pascalCase componentName}}ContextTypes {
+  {{camelCase componentName}}: null;
+}
+
+const {{pascalCase componentName}}Context = createContext<{{pascalCase componentName}}ContextTypes | null>(null);
+
+export const use{{pascalCase componentName}}Provider = (): {{pascalCase componentName}}ContextTypes => ({
+  {{camelCase componentName}}: useContext({{pascalCase componentName}}Context),
+});
+
+export function {{pascalCase componentName}}Provider({ children }: PropTypes): ReactElement {
+  return <{{pascalCase componentName}}Context.Provider value={null}>{children}</{{pascalCase componentName}}Context.Provider>;
+}
+
+export default {{pascalCase componentName}}Provider;
