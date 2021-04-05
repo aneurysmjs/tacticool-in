@@ -50,9 +50,10 @@ function formatTime(seconds: number): string {
   return `${minutes}:${secs}`;
 }
 
-const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsType) => {
+const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsType) => {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [seekTime, setSeekTime] = useState(0);
 
   const [state, setState] = useState(initialState);
 
@@ -89,15 +90,15 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
   /**
    * @returns {void}
    */
-  const togglePlay = (): void => {
+  const togglePlay = useCallback(() => {
     const method = video.current?.paused ? 'play' : 'pause';
     video.current?.[method]();
-  };
+  }, []);
 
   /**
    * @returns {void}
    */
-  const handleProgress = (): void => {
+  const handleProgress = useCallback(() => {
     let percent = 0;
 
     if (video.current) {
@@ -110,14 +111,14 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
       ...prevState,
       progress: `${percent}%`,
     }));
-  };
+  }, []);
 
   /**
    *
    * @param {SyntheticEvent} evt
    * @returns {void}
    */
-  const handleRangeUpdate = (evt: SyntheticEvent): void => {
+  const handleRangeUpdate = useCallback((evt: SyntheticEvent) => {
     const { name, value } = evt.target as HTMLInputElement;
 
     setState((prevState) => ({
@@ -128,20 +129,26 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
     if (video.current) {
       video.current[name] = value;
     }
-  };
+  }, []);
 
   /**
    *
    * @param {SyntheticEvent} evt
    * @returns {void}
    */
-  const scrub = (evt: SyntheticEvent): void => {
-    const scrubTime =
-      (evt.nativeEvent.offsetX / video.current.clientWidth) * video.current.duration;
-    if (!Number.isNaN(scrubTime) && video.current) {
-      video.current.currentTime = scrubTime;
+  const scrub = useCallback((evt: SyntheticEvent) => {
+    const progressBar = evt.nativeEvent as MouseEvent;
+    const target = evt.target as HTMLDivElement;
+
+    /**
+     * @link https://codepen.io/blackjacques/pen/bgamaj?editors=1010
+     */
+    const percent = (progressBar.offsetX / target.offsetWidth) * video.current?.duration;
+
+    if (!Number.isNaN(percent) && video.current) {
+      video.current.currentTime = percent;
     }
-  };
+  }, []);
 
   /**
    * @returns {void}
@@ -181,7 +188,7 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
         scrub(evt);
       }
     },
-    [state],
+    [state, scrub],
   );
 
   /**
@@ -189,7 +196,7 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
    * @param {SyntheticEvent} evt
    * @returns {void}
    */
-  const skip = (evt: SyntheticEvent): void => {
+  const skip = useCallback((evt: SyntheticEvent) => {
     const target = evt.target as HTMLVideoElement;
     const skipValue = target.attributes[1].value;
 
@@ -198,7 +205,7 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
         video.current.currentTime += Number(skipValue);
       }
     }
-  };
+  }, []);
 
   /**
    * Toggles video's volume.
@@ -290,4 +297,4 @@ const TacticPlayer2: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsT
     </div>
   );
 };
-export default TacticPlayer2;
+export default TacticPlayer;
