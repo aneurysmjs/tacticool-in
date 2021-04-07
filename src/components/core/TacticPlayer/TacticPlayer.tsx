@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FunctionComponent, SyntheticEvent, useState, useRef, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faVolumeDown, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
+// import Spinner from '~/components/base/Spinner';
 
 import dutch from '~/assets/video/dutch_mgl-rtfm_depo-control.webm';
 
@@ -15,7 +15,6 @@ interface PropsType {
 }
 
 interface StateType {
-  video: null | HTMLVideoElement;
   progress: string;
   playbackRate: number;
   volume: number;
@@ -23,7 +22,6 @@ interface StateType {
 }
 
 const initialState: StateType = {
-  video: null,
   progress: '0%',
   playbackRate: 1,
   volume: 1,
@@ -50,9 +48,12 @@ function formatTime(seconds: number): string {
   return `${minutes}:${secs}`;
 }
 
+function filterProgressBar(evt: SyntheticEvent) {}
+
 const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsType) => {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [, rerender] = useState(() => {});
   const [seekTime, setSeekTime] = useState(0);
 
   const [state, setState] = useState(initialState);
@@ -140,10 +141,12 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
     const progressBar = evt.nativeEvent as MouseEvent;
     const target = evt.target as HTMLDivElement;
 
+    console.log('evt', evt);
+
     /**
      * @link https://codepen.io/blackjacques/pen/bgamaj?editors=1010
      */
-    const percent = (progressBar.offsetX / target.offsetWidth) * video.current?.duration;
+    const percent = (progressBar.offsetX / target.offsetWidth) * video.current!.duration;
 
     if (!Number.isNaN(percent) && video.current) {
       video.current.currentTime = percent;
@@ -214,14 +217,16 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
    */
   const handleMute = useCallback(() => {
     if (video.current) {
-      video.current.volume = video.current.volume ? 0 : state.volume;
+      video.current.muted = !video.current.muted;
+      rerender();
     }
-  }, [state]);
+  }, []);
 
   const { progress, playbackRate, volume } = state;
 
   return (
     <div className="player">
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={video}
         className="player__video viewer"
@@ -238,13 +243,15 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
             <span className="player__time-label">{formatTime(video.current?.currentTime)}</span>
             <div
               className="progress"
+              role="progressbar"
+              tabIndex={-1}
               onClick={scrub}
               onMouseDown={handleMouseDown}
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseLeave}
             >
-              <div className="progress__filled" style={{ flexBasis: progress }}></div>{' '}
+              <div className="progress__filled" style={{ flexBasis: progress }}></div>
             </div>
             <span className="player__time-label">{formatTime(video.current?.duration)}</span>
           </div>
@@ -256,7 +263,7 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
             <button className="player__button" title="Toggle volume" onClick={handleMute}>
               {
                 <FontAwesomeIcon
-                  icon={video.current?.volume ? faVolumeMute : faVolumeDown}
+                  icon={video.current?.muted ? faVolumeMute : faVolumeDown}
                   size="lg"
                 />
               }

@@ -77,12 +77,14 @@
   flex: 10;
   transition: height 0.3s;
 
-  @apply bg-black bg-opacity-25
-  mx-1
-  relative
-  flex
+  @apply bg-black
+  bg-opacity-25
   cursor-pointer
-  h-2;
+  flex
+  h-2
+  mx-1
+  outline-none
+  relative;
 }
 
 .progress__filled {
