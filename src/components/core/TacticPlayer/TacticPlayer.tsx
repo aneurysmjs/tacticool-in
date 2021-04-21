@@ -50,6 +50,16 @@ function formatTime(seconds: number): string {
 
 function filterProgressBar(evt: SyntheticEvent) {}
 
+/**
+ * Wrapper for video's currentTime and duration.
+ *
+ * @param {number} time time to display
+ * @returns JSX.Element
+ */
+function labelTime(time: number): JSX.Element {
+  return <span className="player__time-label">{formatTime(time)}</span>;
+}
+
 const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsType) => {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -141,7 +151,7 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
     const progressBar = evt.nativeEvent as MouseEvent;
     const target = evt.target as HTMLDivElement;
 
-    console.log('evt', evt);
+    console.log('evt.target', evt.target);
 
     /**
      * @link https://codepen.io/blackjacques/pen/bgamaj?editors=1010
@@ -240,7 +250,8 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
       <div className="player__controls-container">
         <div className="player__controls">
           <div className="player__control-bar">
-            <span className="player__time-label">{formatTime(video.current?.currentTime)}</span>
+            {video.current && labelTime(video.current?.currentTime)}
+
             <div
               className="progress"
               role="progressbar"
@@ -253,7 +264,7 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
             >
               <div className="progress__filled" style={{ flexBasis: progress }}></div>
             </div>
-            <span className="player__time-label">{formatTime(video.current?.duration)}</span>
+            {video.current && labelTime(video.current?.duration)}
           </div>
 
           <div className="player__buttons">
