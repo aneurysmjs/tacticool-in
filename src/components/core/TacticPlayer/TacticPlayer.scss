@@ -73,25 +73,32 @@
   // height: 15px;
 }
 
-.progress {
-  flex: 10;
-  transition: height 0.3s;
+.progress-bar-base {
+  @apply absolute left-0 h-2 top-0;
+}
 
-  @apply bg-black
-  bg-opacity-25
-  cursor-pointer
+.progress {
+  @apply cursor-pointer
   flex
   h-2
   mx-1
   outline-none
-  relative;
+  relative
+  w-full;
+}
+
+.progress__backdrop {
+  @apply bg-black bg-opacity-25 progress-bar-base w-full;
 }
 
 .progress__filled {
-  background: #ffc600;
-  flex-basis: 0%;
-  flex: 0;
-  width: 50%;
+  transition: 0.1s linear, 0.1s linear;
+  transition-property: transform;
+
+  @apply bg-current
+  progress-bar-base 
+  origin-top-left	
+  w-full;
 }
 
 .player__volume-slider {

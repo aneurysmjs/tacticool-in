@@ -15,14 +15,16 @@ interface PropsType {
 }
 
 interface StateType {
-  progress: string;
+  progress: number;
+  progressPercent: string;
   playbackRate: number;
   volume: number;
   isMouseDown: boolean;
 }
 
 const initialState: StateType = {
-  progress: '0%',
+  progress: 0,
+  progressPercent: '0%',
   playbackRate: 1,
   volume: 1,
   isMouseDown: false,
@@ -110,17 +112,20 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
    * @returns {void}
    */
   const handleProgress = useCallback(() => {
-    let percent = 0;
+    let rawProgress = 0;
+    let percent = '0';
 
     if (video.current) {
-      percent = (video.current.currentTime / video.current.duration) * 100;
+      rawProgress = video.current.currentTime / video.current.duration;
+      percent = `${(video.current.currentTime / video.current.duration) * 100}%`;
     }
 
     // const other = Math.floor((100 / video.current?.duration) * video.current?.currentTime);
 
     setState((prevState) => ({
       ...prevState,
-      progress: `${percent}%`,
+      progress: rawProgress,
+      progressPercent: percent,
     }));
   }, []);
 
@@ -234,6 +239,8 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
 
   const { progress, playbackRate, volume } = state;
 
+  console.log('progress', progress);
+
   return (
     <div className="player">
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -251,7 +258,6 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
         <div className="player__controls">
           <div className="player__control-bar">
             {video.current && labelTime(video.current?.currentTime)}
-
             <div
               className="progress"
               role="progressbar"
@@ -262,7 +268,8 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseLeave}
             >
-              <div className="progress__filled" style={{ flexBasis: progress }}></div>
+              <div className="progress__backdrop" />
+              <div className="progress__filled" style={{ transform: `scaleX(${progress})` }}></div>
             </div>
             {video.current && labelTime(video.current?.duration)}
           </div>
