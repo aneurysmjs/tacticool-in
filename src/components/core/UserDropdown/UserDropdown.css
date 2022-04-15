@@ -1,7 +1,3 @@
-@import '~styles/functions/px-to-rem';
-@import '~styles/mixins';
-@import '~styles/variables';
-
 .user-dropdown {
   @apply ml-3 relative;
 }

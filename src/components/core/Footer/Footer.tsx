@@ -1,27 +1,49 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 
-import './Footer.scss';
+// import reactLogo from '~/src/assets/img/brands/react-logo.png';
+// import tailwindLogo from '~/src/assets/img/brands/tailwind-logo.png';
+// import firebaseLogo from '~/src/assets/img/brands/firebase-logo.png';
+
+import './Footer.css';
+
+// const footerCols = [
+//   {
+//     id: 0,
+//     image: reactLogo,
+//     title: 'react',
+//     link: 'https://org',
+//   },
+//   {
+//     id: 1,
+//     image: tailwindLogo,
+//     title: 'tailwind',
+//     link: 'https://tailwindcss.com',
+//   },
+//   {
+//     id: 2,
+//     image: firebaseLogo,
+//     title: 'firebase',
+//     link: 'https://firebase.google.com',
+//   },
+// ];
 
 const Footer: FunctionComponent = () => (
   <footer className="footer">
-    <div className="container">
-      <div className="footer__top">
-        <div className="row">
-          <div className="col">
-            {/* <div data-testid="social">
-              {social && social.map(s => <Icon key={s.id} path={`social/${s.icon}`} />)}
-            </div> */}
-          </div>
+    {/* <p className="footer__made-with">Made with love</p>
+    <div className="footer__content">
+      {footerCols.map(({ id, title, link, image }) => (
+        <div key={id} className="footer__col">
+          <a rel="noreferrer" target="_blank" href={link}>
+            <img title={title} className="footer__img" src={image} alt="react" />
+          </a>
         </div>
-      </div>
-    </div>
-    <div className="footer__bottom">
-      <div className="footer__copyright">
-        <span data-testid="copyright">
-          Copyright © {new Date().getFullYear()}. All Rights Reserved
-        </span>
-      </div>
-    </div>
+      ))}
+    </div> */}
+    <section className="footer__copyright">
+      <p className="footer__author">
+        By <a href="https://jero.dev">jero.dev</a>
+      </p>
+    </section>
   </footer>
 );
 

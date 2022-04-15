@@ -37,14 +37,14 @@
 }
 
 .player__slider {
-  // width: 10px;
-  // height: 30px;
+  /* // width: 10px; */
+  /* // height: 30px; */
   @apply h-7 w-2;
 }
 
 .player__controls-container {
-  // transform: translateY(100%) translateY(-5px);
-  // transition: all 0.3s;
+  /* // transform: translateY(100%) translateY(-5px); */
+  /* // transition: all 0.3s; */
 
   @apply absolute
     bg-opacity-5
@@ -66,11 +66,11 @@
 }
 
 .player:hover .player__controls {
-  // transform: translateY(0);
+  /* // transform: translateY(0); */
 }
 
 .player:hover .progress {
-  // height: 15px;
+  /* // height: 15px; */
 }
 
 .progress-bar-base {
@@ -102,7 +102,7 @@
 }
 
 .player__volume-slider {
-  // -webkit-appearance: none;
+  /* // -webkit-appearance: none; */
   @apply w-20;
 }
 

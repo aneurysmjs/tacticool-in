@@ -1,0 +1,10 @@
+.signIn-form {
+  /* box-shadow: 0 20px 40px 0 rgba(0,0,0,.5); */
+  margin-bottom: 4rem;
+  padding: px-to-rem(36);
+  width: 90%;
+
+  /* @include media($sm) {
+    width: px-to-rem(360);
+  } */
+}

@@ -7,7 +7,7 @@ import { faPlay, faPause, faVolumeDown, faVolumeMute } from '@fortawesome/free-s
 
 import dutch from '~/assets/video/dutch_mgl-rtfm_depo-control.webm';
 
-import './TacticPlayer.scss';
+import './TacticPlayer.css';
 
 interface PropsType {
   onPlay?: (evt: SyntheticEvent) => void;

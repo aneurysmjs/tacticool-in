@@ -1,13 +1,13 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 
-import './Spinner.scss';
+import './Spinner.css';
 
 type PropsType = {
-  height: number | string;
-  width: number | string;
+  height?: number | string;
+  width?: number | string;
 };
 
-const Spinner = ({ height, width }: PropsType): JSX.Element => (
+const Spinner: FunctionComponent<PropsType> = ({ height = '24', width = '24' }) => (
   <div
     className="spinner"
     style={{
@@ -19,10 +19,5 @@ const Spinner = ({ height, width }: PropsType): JSX.Element => (
     <div className="spinner__inner-circle" />
   </div>
 );
-
-Spinner.defaultProps = {
-  height: '24',
-  width: '24',
-};
 
 export default Spinner;

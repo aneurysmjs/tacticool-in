@@ -12,7 +12,7 @@ import FormGroup from '~/components/base/FormGroup';
 import Input from '~/components/base/Input';
 import useFormValidation from '~/hooks/useFormValidation';
 
-import './SingInForm.scss';
+import './SingInForm.css';
 
 interface User {
   email: string;

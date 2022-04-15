@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './UserDropdown.scss';
+import './UserDropdown.css';
 
 const links = [
   {

@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import Navigation from '~/components/core/Navigation';
 
-import './Header.scss';
+import './Header.css';
 
 const Header = (): ReactElement => (
   <div>

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import UserDropdown from '~/components/core/UserDropdown';
 
-import './UserMenu.scss';
+import './UserMenu.css';
 
 const UserMenu: FunctionComponent = () => {
   return (

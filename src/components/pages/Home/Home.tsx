@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import Spinner from '~/components/base/Spinner';
 
-import './Home.scss';
+import './Home.css';
 
 const Home: FunctionComponent = () => {
   return (

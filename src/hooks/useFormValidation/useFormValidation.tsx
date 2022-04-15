@@ -1,6 +1,9 @@
 // eslint-disable @typescript-eslint/ban-ts-ignore
 import { FormEvent, useCallback, useEffect, useReducer, useRef } from 'react';
 import isEmpty from 'ramda/src/isEmpty';
+import { FieldElement } from '~/shared/types/form';
+import isRadioOrCheckBox from '~/utils/isRadioOrCheckBox';
+import isFunction from '~/utils/isFunction';
 import {
   SET_FIELD_VALUE,
   SET_ERROR,
@@ -13,13 +16,8 @@ import {
   ValidationOptions,
 } from './types';
 
-import { FieldElement } from '~/shared/types/form';
-
 import attachEventListeners from './logic/attachEventListeners';
 import detachEventListeners from './logic/detachEventListeners';
-
-import isRadioOrCheckBox from '~/utils/isRadioOrCheckBox';
-import isFunction from '~/utils/isFunction';
 
 function useFormReducer<T>(state: UseFormState<T>, action: Action<T>): UseFormState<T> {
   if (action.type === SET_FIELD_VALUE) {
@@ -41,7 +39,7 @@ function useFormReducer<T>(state: UseFormState<T>, action: Action<T>): UseFormSt
     //   },
     // };
 
-    console.log('action.payload', action.payload);
+    // console.log('action.payload', action.payload);
 
     return {
       ...state,
@@ -142,54 +140,57 @@ export default function useFormValidation<T>({
 
   const register = useCallback(
     // eslint-disable-next-line consistent-return
-    (validationOptions?: ValidationOptions) => (ref: HTMLInputElement): void => {
-      if (!ref?.name) {
-        // eslint-disable-next-line no-console
-        return console.warn('no name at @', ref);
-      }
+    (validationOptions?: ValidationOptions) =>
+      (ref: HTMLInputElement): void => {
+        if (!ref?.name) {
+          // eslint-disable-next-line no-console
+          return console.warn('no name at @', ref);
+        }
 
-      const fields = fieldsRef.current;
-      const errors = errorsRef.current;
+        const fields = fieldsRef.current;
+        const errors = errorsRef.current;
 
-      const { name } = ref;
+        const { name } = ref;
 
-      if (validationOptions && !errors[name]) {
-        errors[name] = validationOptions;
-      }
+        if (validationOptions && !errors[name]) {
+          errors[name] = validationOptions;
+        }
 
-      // if there's a `ref` and the field doesn't exist
-      if (ref && !fields[name]) {
-        fields[name] = ref;
+        // if there's a `ref` and the field doesn't exist
+        if (ref && !fields[name]) {
+          fields[name] = ref;
 
-        attachEventListeners({
-          field: { ref: fields[name] },
-          handleChange,
-          isRadioOrCheckbox: isRadioOrCheckBox(fields[name]),
-        });
-      }
-    },
+          attachEventListeners({
+            field: { ref: fields[name] },
+            handleChange,
+            isRadioOrCheckbox: isRadioOrCheckBox(fields[name]),
+          });
+        }
+      },
     [handleChange],
   );
 
-  const handleSubmit = (onSubmit: OnSubmit) => async (evt: FormEvent): Promise<void> => {
-    if (evt) {
-      evt.preventDefault();
-      evt.persist();
-    }
+  const handleSubmit =
+    (onSubmit: OnSubmit) =>
+    async (evt: FormEvent): Promise<void> => {
+      if (evt) {
+        evt.preventDefault();
+        evt.persist();
+      }
 
-    try {
-      await onSubmit();
-    } catch (err) {
-      dispatch({
-        type: SET_ERROR,
-        payload: {
-          submitError: {
-            message: err.message,
+      try {
+        await onSubmit();
+      } catch (err) {
+        dispatch({
+          type: SET_ERROR,
+          payload: {
+            submitError: {
+              message: err.message,
+            },
           },
-        },
-      });
-    }
-  };
+        });
+      }
+    };
 
   useEffect(() => {
     const fields = fieldsRef.current;

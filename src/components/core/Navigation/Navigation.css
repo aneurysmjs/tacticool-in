@@ -1,4 +1,3 @@
-@import '~styles/mixins';
 
 .navigation {
   @apply bg-gray-800;

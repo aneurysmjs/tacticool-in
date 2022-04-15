@@ -5,7 +5,6 @@ import Layout from '~/components/core/Layout';
 
 import { Home } from '~/components/pages/Home';
 import { useAuth } from '~/providers/AuthProvider';
-import './Routing.scss';
 
 const Auth = lazy(() => import('~/components/pages/Auth/Auth'));
 
