@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const React = require('react');
-const tailwindcss = require('tailwindcss');
-const autoprefixer = require('autoprefixer'); // help tailwindcss to work
 
 const paths = require('./paths');
 
@@ -34,15 +32,6 @@ module.exports = (mode) => {
     module: {
       // rules for modules (configure loaders, parser options, etc.)
       rules: [
-        // NOTE: eslint-loader is DEPRECATED
-        // {
-        //   test: /\.tsx?$/, // both .ts and .tsx
-        //   loader: 'eslint-loader',
-        //   enforce: 'pre',
-        //   options: {
-        //     fix: false
-        //   }
-        // },
         {
           test: /\.tsx?$/,
           exclude: [/node_modules/],
@@ -62,14 +51,7 @@ module.exports = (mode) => {
               loader: 'css-loader',
             },
             {
-              loader: 'postcss-loader', // Run post css actions
-              options: {
-                // @se https://github.com/webpack-contrib/postcss-loader#postcssoptions
-                // @see https://github.com/webpack-contrib/postcss-loader/blob/master/CHANGELOG.md#400-2020-09-07
-                postcssOptions: {
-                  plugins: [tailwindcss, autoprefixer],
-                },
-              },
+              loader: 'postcss-loader',
             },
             {
               loader: 'sass-loader',
@@ -127,27 +109,18 @@ module.exports = (mode) => {
               files: assets,
               options,
             },
-            isProd,
+            isProd: false,
             reactVersion: React.version,
           };
         },
         template: `${paths.src}/index.ejs`,
         minify: isProd,
       }),
-      // copy files and folders to specific paths.
-      // new CopyWebpackPlugin({
-      //   // Copy `assets` contents to {output}/assets/
-      //   patterns: [
-      //     {
-      //       from: 'src/assets',
-      //       to: 'assets',
-      //     },
-      //   ],
-      // }),
 
       new ESLintPlugin({
         extensions: 'tsx',
         failOnError: false,
+        emitError: false,
       }),
     ],
   };

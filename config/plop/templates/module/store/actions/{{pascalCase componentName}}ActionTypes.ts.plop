@@ -1,0 +1,1 @@
+export const {{constantCase componentName}}_ACTION = '{{constantCase componentName}}_ACTION';

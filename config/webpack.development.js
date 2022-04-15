@@ -22,7 +22,7 @@ module.exports = (env) => {
     devServer: {
       // By default it will use your current working directory to serve content,
       // but you can modify this to another directory
-      contentBase: paths.src,
+      static: paths.src,
       compress: true,
       port: 9000,
       /**

@@ -1,0 +1,8 @@
+
+export interface {{pascalCase componentName}}State {
+    example: Example;
+}
+
+export interface Example {
+    name: string;
+}

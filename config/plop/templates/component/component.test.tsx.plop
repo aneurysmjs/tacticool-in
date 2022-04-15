@@ -1,0 +1,12 @@
+import {render} from '@testing-library/react';
+import * as React from 'react';
+
+import {{pascalCase componentName}} from './{{pascalCase componentName}}';
+
+describe('{{pascalCase componentName}}', () => {
+    it('should have component\'s name as className', () => {
+        const {container} = render(<{{pascalCase componentName}} />);
+        const div = container.firstChild as HTMLDivElement;
+        expect(div.className).toEqual('{{camelCase componentName}}');
+    });
+});

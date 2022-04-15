@@ -1,0 +1,23 @@
+import {{curlyMe (suffixMe (camelCase componentName) 'Action')}} from 'Modules/{{pascalCase componentName}}/Store/Actions/{{pascalCase componentName}}Actions';
+import {{curlyMe (suffixMe (constantCase componentName) '_ACTION')}} from 'Modules/{{pascalCase componentName}}/Store/Actions/{{pascalCase componentName}}ActionTypes';
+import {{curlyMe (appendType 'I' (pascalCase componentName) 'State')}} from 'Modules/{{pascalCase componentName}}/{{pascalCase componentName}}Models';
+
+type T{{pascalCase componentName}}Actions = ReturnType<typeof {{camelCase componentName}}Action>;
+
+const initialState: I{{pascalCase componentName}}State = {
+    example: {
+        name: 'initial value',
+    },
+};
+
+export function {{camelCase componentName}}Reducer(state: I{{pascalCase componentName}}State = initialState, action: T{{pascalCase componentName}}Actions): I{{pascalCase componentName}}State {
+    switch (action.type) {
+        case {{constantCase componentName}}_ACTION: {
+            return {
+                ...state,
+            };
+        }
+        default:
+            return state;
+    }
+}

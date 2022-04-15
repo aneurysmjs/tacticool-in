@@ -1,0 +1,8 @@
+import {IExample, {{suffixMe (appendType 'I' (pascalCase componentName) 'State') '}'}} from 'Modules/{{pascalCase componentName}}/{{pascalCase componentName}}Models';
+
+/**
+ * Базовый селектор, тут вы можете начинать с его логикой.
+ *
+ * @param {{curlyMe (appendType 'I' (pascalCase componentName) 'State')}} state Состояние модуля {{pascalCase componentName}}.
+ */
+export const {{camelCase componentName}}Selector = (state: I{{pascalCase componentName}}State): IExample => state.example;

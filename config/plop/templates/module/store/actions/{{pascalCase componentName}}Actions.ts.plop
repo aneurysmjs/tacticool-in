@@ -1,0 +1,8 @@
+import {{curlyMe (suffixMe (constantCase componentName) '_ACTION' )}} from 'Modules/{{pascalCase componentName}}/Store/Actions/{{pascalCase componentName}}ActionTypes';
+import {IExample} from 'Modules/{{pascalCase componentName}}/{{pascalCase componentName}}Models';
+
+export const {{camelCase componentName}}Action = (payload: IExample) =>
+    ({
+        type: {{constantCase componentName}}_ACTION,
+        payload,
+    } as const);

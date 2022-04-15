@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const { merge: webpackMerge } = require('webpack-merge');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 const paths = require('./paths');
@@ -31,16 +31,11 @@ module.exports = ({ mode }) => {
         assetFilename.endsWith('.css') || assetFilename.endsWith('.js'),
     },
 
-    plugins: [
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-        canPrint: true,
-      }),
+    optimization: {
+      minimizer: [new CssMinimizerPlugin()],
+    },
 
+    plugins: [
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer',
       }),
@@ -53,9 +48,9 @@ module.exports = ({ mode }) => {
         test: /\.(png|jpe?g|gif)$/,
       }),
     ],
-    externals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-    },
+    // externals: {
+    //   react: 'React',
+    //   'react-dom': 'ReactDOM',
+    // },
   });
 };
