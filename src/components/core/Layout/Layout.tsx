@@ -1,19 +1,19 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import Footer from '~/components/core/Footer';
 import Header from '~/components/core/Header';
-import './Layout.scss';
 
-type PropsType = {
-  children: ReactNode;
-};
+import './Layout.css';
 
-const Layout: FunctionComponent<PropsType> = ({ children }: PropsType): JSX.Element => (
-  <div className="layout">
+const Layout: FunctionComponent = () => (
+  <main className="layout">
     <Header />
-    <div className="layout__content">{children}</div>
+    <div className="layout__content">
+      <Outlet />
+    </div>
     <Footer />
-  </div>
+  </main>
 );
 
 export default Layout;
