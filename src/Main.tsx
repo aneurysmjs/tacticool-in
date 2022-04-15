@@ -1,31 +1,15 @@
 import { StrictMode } from 'react';
-import { createBrowserHistory } from 'history';
-import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 
-const browserHistory = window.browserHistory || createBrowserHistory();
+const container = document.getElementById('app');
 
-render(
-  <StrictMode>
-    <Router>
+if (container) {
+  const root = createRoot(container); // createRoot(container!) if you use TypeScript
+  root.render(
+    <StrictMode>
       <App />
-    </Router>
-  </StrictMode>,
-  document.getElementById('app'),
-);
-
-if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  if (module.hot) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    module.hot.accept();
-  }
-
-  if (!window.browserHistory) {
-    window.browserHistory = browserHistory;
-  }
+    </StrictMode>,
+  );
 }
