@@ -1,6 +1,9 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+/**
+ * @link https://stackoverflow.com/a/69048162/5378393
+ */
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 const config = {
   apiKey: 'AIzaSyBxUrjIdkn6HoARdK3ODMFzhVRQiPoIzRA',
@@ -11,13 +14,8 @@ const config = {
   appId: '1:636631679778:web:bd944178288013cbf05b7b',
 };
 
-firebase.initializeApp(config);
+export const app = initializeApp(config);
 
-export const firestore = firebase.firestore();
-export const auth = firebase.auth();
+export const db = getFirestore();
 
-if (process.env.NODE_ENV !== 'production') {
-  window.firebase = firebase;
-}
-
-export default firebase;
+export const auth = getAuth();
