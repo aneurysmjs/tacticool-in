@@ -37,7 +37,7 @@ module.exports = (mode) => {
           exclude: [/node_modules/],
           use: [
             {
-              loader: 'babel-loader',
+              loader: 'ts-loader',
             },
           ],
         },
@@ -90,7 +90,7 @@ module.exports = (mode) => {
       ],
     },
     plugins: [
-      new webpack.ProgressPlugin(progressHandler),
+     // new webpack.ProgressPlugin(progressHandler),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
