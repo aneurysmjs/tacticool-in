@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { SingInForm } from '~/components/common/SingInForm';
 
-import './Auth.scss';
+import './Auth.css';
 
 const Auth: FunctionComponent = () => {
   return (

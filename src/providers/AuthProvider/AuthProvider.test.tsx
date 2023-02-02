@@ -1,5 +1,6 @@
-import { createContext, useContext, ReactNode, ReactElement } from 'react';
-import { renderHook, act, RenderHookResult } from '@testing-library/react-hooks';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { ReactNode, ReactElement } from 'react';
+import { renderHook, act, RenderHookResult } from '@testing-library/react';
 
 import { auth } from '~/firebase-config';
 
@@ -16,7 +17,7 @@ describe('AuthProvider', () => {
     test('should get value from context provider', async () => {
       jest.spyOn(auth, 'onAuthStateChanged');
 
-      let testRenderer = {} as RenderHookResult<{}, [AuthStateType, AuthDispatch]>;
+      let testRenderer = {} as RenderHookResult<Record<string, any>, [AuthStateType, AuthDispatch]>;
 
       const wrapper = ({ children }: WrapperProps): ReactElement => (
         <AuthProvider>{children}</AuthProvider>
@@ -29,18 +30,18 @@ describe('AuthProvider', () => {
           wrapper,
         });
       });
-
+      // @ts-ignore
       const [state] = testRenderer.result.current;
 
       expect(auth.onAuthStateChanged).toHaveBeenCalled();
       expect(state).toStrictEqual(authState);
-
+      // @ts-ignore
       auth.onAuthStateChanged.mockRestore();
     });
 
     it('throws an error if it is not in context', () => {
       const { result } = renderHook(() => useAuth());
-
+      // @ts-ignore
       expect(result.error).toBeDefined();
     });
   });

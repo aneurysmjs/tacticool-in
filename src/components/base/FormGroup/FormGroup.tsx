@@ -1,4 +1,4 @@
-import { ReactNode, ReactType, ReactElement, HTMLProps } from 'react';
+import { ReactNode, HTMLProps, FunctionComponent } from 'react';
 
 import classNames from 'classnames';
 
@@ -9,11 +9,11 @@ interface PropsType extends HTMLProps<HTMLDivElement> {
   check?: boolean;
   inline?: boolean;
   disabled?: boolean;
-  tag?: string | ReactType;
+  tag?: string;
   className?: string;
 }
 
-function FormGroup({
+const FormGroup: FunctionComponent<PropsType> = ({
   className,
   row,
   disabled,
@@ -21,7 +21,7 @@ function FormGroup({
   inline,
   tag: Tag = 'div',
   ...attributes
-}: PropsType): ReactElement {
+}) => {
   const classes = classNames(
     className,
     row ? 'row' : false,
@@ -35,7 +35,9 @@ function FormGroup({
     attributes.disabled = disabled;
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return <Tag {...attributes} className={classes} />;
-}
+};
 
 export default FormGroup;

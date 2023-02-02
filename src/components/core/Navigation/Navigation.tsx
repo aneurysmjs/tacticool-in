@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import UserMenu from '~/components/core/UserMenu';
 import { NavLinks } from '~/shared/types';
-import './Navigation.scss';
+import './Navigation.css';
+
+type ClassNameProp = { isActive: boolean };
 
 const links: NavLinks = [
   {
@@ -29,14 +31,17 @@ const links: NavLinks = [
   },
 ];
 
+const navbarLinkClass = 'navigation__link';
+
 const navLinks = links.length
   ? links.map(({ path, name, id }) => (
       <NavLink
         key={id}
-        activeClassName="navigation__link--active"
-        className="navigation__link"
+        className={({ isActive }: ClassNameProp): string =>
+          isActive ? `${navbarLinkClass} navigation__link--active` : navbarLinkClass
+        }
         role="menuitem"
-        to={`/${path}`}
+        to={path}
       >
         {name}
       </NavLink>
@@ -78,10 +83,11 @@ function Navigation(): ReactElement {
             ? links.map(({ path, name, id }) => (
                 <NavLink
                   key={id}
-                  activeClassName="navigation__link--active"
-                  className="navigation__mobile-link"
+                  className={({ isActive }: ClassNameProp): string =>
+                    isActive ? `${navbarLinkClass} navigation__link--active` : navbarLinkClass
+                  }
                   role="menuitem"
-                  to={`/${path}`}
+                  to={path}
                 >
                   {name}
                 </NavLink>

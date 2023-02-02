@@ -74,3 +74,6 @@ declare module '*.module.css' {
 declare module '*.css' {
   export default any;
 }
+declare module '*.webm' {
+  export default any;
+}

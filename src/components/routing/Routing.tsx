@@ -1,29 +1,31 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FunctionComponent, lazy } from 'react';
+import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 
-import { ComponentType, ReactElement } from 'react';
-import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
-
-import loadable from '@loadable/component';
 import Layout from '~/components/core/Layout';
 
 import { Home } from '~/components/pages/Home';
 import { useAuth } from '~/providers/AuthProvider';
-import './Routing.scss';
 
-const Auth = loadable(() => import('~/components/pages/Auth/Auth'));
+const Auth = lazy(() => import('~/components/pages/Auth/Auth'));
 
-const Routing = (): ReactElement => {
+const Routing: FunctionComponent = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state] = useAuth();
 
   return (
-    <main className="routing">
-      <Layout>
-        <Route exact component={Home} path="/" />
-        <Route exact component={Auth} path="/auth" />
+    <Router>
+      <Routes>
+        <Route element={<Layout />} path="/">
+          <Route index element={<Home />} />
 
-        {/* <PrivateRoute authed={user !== null} component={Admin} path="/admin" /> */}
-      </Layout>
-    </main>
+          <Route element={<Auth />} path="/auth" />
+
+          {/* <PrivateRoute authed={user !== null} component={Admin} path="/admin" /> */}
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 

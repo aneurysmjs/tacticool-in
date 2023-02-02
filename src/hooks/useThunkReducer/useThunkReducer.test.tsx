@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Dispatch } from 'react';
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 
 import { Action } from '~/shared/types';
 
@@ -75,6 +75,7 @@ describe('useThunkReducer tests', () => {
         const payload = await Promise.resolve('Matthias');
         dispatch({ type: 'SUCCESS', payload });
       } catch (error) {
+        // @ts-ignore
         dispatch({ type: 'ERROR', error });
       }
     };
@@ -107,6 +108,7 @@ describe('useThunkReducer tests', () => {
         const payload = await Promise.reject(new Error('something wrong happened'));
         dispatch({ type: 'SUCCESS', payload });
       } catch (error) {
+        // @ts-ignore
         dispatch({ type: 'ERROR', error });
       }
     };

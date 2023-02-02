@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ReactElement, Ref, ReactType } from 'react';
+import { InputHTMLAttributes, ReactElement, Ref } from 'react';
 import classNames from 'classnames';
 
 export type InputType =
@@ -35,14 +35,14 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   state?: string;
   valid?: boolean;
   invalid?: boolean;
-  tag?: string | ReactType;
+  tag?: string;
   innerRef?: Ref<HTMLInputElement> | HTMLInputElement;
   plaintext?: boolean;
   addon?: boolean;
   className?: string;
 }
 
-const isNotaNumber = new RegExp('\\D', 'g');
+const isNotaNumber = /\D/g;
 
 function Input({
   className,
@@ -100,6 +100,8 @@ function Input({
     console.warn(
       'Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.',
     );
+    // eslint-disable-next-line no-param-reassign, @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     // eslint-disable-next-line no-param-reassign
     bsSize = attributes.size;
     // eslint-disable-next-line no-param-reassign
@@ -130,7 +132,8 @@ function Input({
     // eslint-disable-next-line no-param-reassign
     delete attributes.children;
   }
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return <Tag {...attributes} ref={innerRef} className={classes} />;
 }
 

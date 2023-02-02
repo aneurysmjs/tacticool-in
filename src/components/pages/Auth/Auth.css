@@ -1,0 +1,11 @@
+.auth {
+  align-items: center;
+  display: flex;
+  height: calc(100vh + 0);
+  justify-content: center;
+  padding-top: 70px;
+
+  /* @include media($sm) {
+    height: calc(100vh - 288.6px);
+  } */
+}

@@ -1,33 +1,28 @@
 {
   "env": {
-    "browser": true,
-    "jest": true,
-    "node": true
+    "browser": true
   },
   "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb-base",
-    "plugin:@typescript-eslint/recommended", 
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     "plugin:jsx-a11y/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-     /**
+    /**
      * "prettier/@typescript-eslint" has been merged into "prettier" in eslint-config-prettier 8.0.0.
      * See: https://github.com/prettier/eslint-config-prettier/blob/main/CHANGELOG.md#version-800-2021-02-21
      */
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "import",
-    "@typescript-eslint", 
-    "react",
-    "react-hooks",
-    "jsx-a11y"
-  ],
+  "plugins": ["import", "@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "react": {
       "version": "detect"
     },
@@ -37,29 +32,26 @@
       }
     }
   },
-  "parserOptions":  {
-    "ecmaVersion": 2018,  // Allows for the parsing of modern ECMAScript features
-    "sourceType": "module"  // Allows for the use of imports
+  "parserOptions": {
+    "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
   },
   "rules": {
-     /**
-    * @see https://stackoverflow.com/a/64024916/5378393
-    */
+    /**
+     * @see https://stackoverflow.com/a/64024916/5378393
+     */
     "no-use-before-define": "off",
-    "@typescript-eslint/explicit-function-return-type": ["error", {
-      // "allowExpressions": true,
-      "allowTypedFunctionExpressions": true
-    }],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        // "allowExpressions": true,
+        "allowTypedFunctionExpressions": true
+      }
+    ],
     "react/jsx-uses-vars": "error",
     "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
-      }
-    ],
     "import/extensions": [
       2,
       {
@@ -67,15 +59,38 @@
       }
     ],
     "@typescript-eslint/no-empty-function": "off",
-    "react/jsx-sort-props": ["error", {
-      "callbacksLast": true,
-      "shorthandFirst": true,
-      "shorthandLast": false,
-      "ignoreCase": false,
-      "noSortAlphabetically": false,
-      "reservedFirst": true
-    }],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "shorthandLast": false,
+        "ignoreCase": false,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }
+    ],
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
-  }
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "no-restricted-exports": "off",
+    /**
+     * @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-extraneous-dependencies.md#options
+     * @see https://github.com/airbnb/javascript/blob/f0df3a8680479ff0b897cd98a1eab6b156899214/packages/eslint-config-airbnb-base/rules/imports.js#L72-L95
+     */
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}", "cypress/**/*.js", "config/**/*.js"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }

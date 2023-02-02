@@ -1,9 +1,8 @@
 import { ComponentType, ReactElement } from 'react';
-import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
-import { LoadableComponent } from '@loadable/component';
+import { Route, Navigate } from 'react-router-dom';
 
 interface PrivateRouteProps {
-  component: ComponentType<RouteComponentProps> | LoadableComponent<RouteComponentProps>;
+  component: ComponentType;
   authed: boolean;
 }
 
@@ -15,11 +14,15 @@ export default function PrivateRoute({
   return (
     <Route
       {...rest}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       render={(props): ReactElement =>
         authed ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: '/auth', state: { from: props.location } }} />
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          <Navigate to={{ pathname: '/auth', state: { from: props.location } }} />
         )
       }
     />

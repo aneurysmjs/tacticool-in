@@ -1,0 +1,12 @@
+import {render} from '@testing-library/react';
+import * as React from 'react';
+
+import {{curlyMe (suffixMe (pascalCase componentName) 'Page')}} from './{{pascalCase componentName}}Page';
+
+describe('{{pascalCase componentName}}', () => {
+    it('should have "{{pascalCase componentName}} page" as textContent', () => {
+        const {container} = render(<{{pascalCase componentName}}Page />);
+        const div = container.firstChild as HTMLDivElement;
+        expect(div.textContent).toEqual('{{pascalCase componentName}} page');
+    });
+});

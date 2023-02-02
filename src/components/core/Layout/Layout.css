@@ -1,0 +1,7 @@
+.layout {
+  @apply flex flex-col h-screen;
+}
+
+.layout__content {
+  @apply grow pt-4;
+}

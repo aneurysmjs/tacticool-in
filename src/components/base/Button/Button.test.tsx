@@ -17,6 +17,8 @@ describe('Button', () => {
         {props.children}
       </a>
     );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { getByText } = render(<Button tag={Link}>Home</Button>);
 
     const link = getByText('Home') as HTMLAnchorElement;
@@ -72,7 +74,7 @@ describe('Button', () => {
 
     const anchor = getByText('Home');
 
-    expect(anchor.type).toBe(undefined);
+    expect((anchor as HTMLButtonElement).type).toBe(undefined);
     expect(anchor.textContent).toBe('Home');
   });
 
@@ -145,7 +147,7 @@ describe('Button', () => {
 
     const { container } = render(<Button close />);
 
-    const actualInnerHTML = container.firstChild?.innerHTML;
+    const actualInnerHTML = (container.firstChild as HTMLElement)?.innerHTML;
 
     expect(container.querySelectorAll('.close').length).toBe(1);
     expect(container.querySelectorAll('.btn').length).toBe(0);

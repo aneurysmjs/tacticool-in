@@ -1,0 +1,16 @@
+import { FunctionComponent } from 'react';
+
+import './{{pascalCase componentName}}.less';
+
+interface PropsType {}
+
+/**
+ * Описание компонента
+ */
+const {{pascalCase componentName}}: FunctionComponent<PropsType> = (props) => (
+    <div className="{{camelCase componentName}}">
+        {{pascalCase componentName}}
+    </div>
+);
+
+export default {{pascalCase componentName}};

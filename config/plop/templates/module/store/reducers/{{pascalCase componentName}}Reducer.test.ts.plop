@@ -1,0 +1,20 @@
+import {{curlyMe (suffixMe (constantCase componentName) '_ACTION')}} from 'Modules/{{pascalCase componentName}}/Store/Actions/{{pascalCase componentName}}ActionTypes';
+import {{curlyMe (suffixMe (camelCase componentName) 'Reducer')}} from 'Modules/{{pascalCase componentName}}/Store/Reducers/{{pascalCase componentName}}Reducer';
+
+describe('{{camelCase componentName}} reducer', () => {
+    const expectedState = {
+        example: {
+            name: 'initial value',
+        },
+    };
+
+    const payload = {
+        name: 'initial value',
+    };
+
+    it('should return initial state', () => {
+        const initialState = {{camelCase componentName}}Reducer(undefined, {type: {{constantCase componentName}}_ACTION, payload});
+
+        expect(initialState).toStrictEqual(expectedState);
+    });
+});
