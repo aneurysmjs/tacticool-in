@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, cleanup, RenderResult, fireEvent } from '@testing-library/react';
 
 import renderWithFirebase from '~/utils/renderWithFirebase';

@@ -1,4 +1,5 @@
-import  { Component, ComponentType, ReactElement, ReactNode } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Component, ComponentType, ReactElement, ReactNode } from 'react';
 import ErrorBoundaryFallbackComponent from './ErrorBoundaryFallbackComponent';
 
 type PropsType = {
@@ -44,11 +45,10 @@ class ErrorBoundary extends Component<PropsType, StateType> {
     const { error, info } = this.state;
 
     if (error != null) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore - I don't know what that fuck is going on :s
       return <FallbackComponent componentStack={info ? info.componentStack : ''} error={error} />;
     }
-
+    // @ts-ignore
     return children || null;
   }
 }
@@ -66,6 +66,7 @@ export function withErrorBoundary<P>({
 }: WithErrorBoundaryPropsType): ComponentType<P> {
   const Wrapped = (props: P): JSX.Element => (
     <ErrorBoundary FallbackComponent={FallbackComponent} onError={onError}>
+      {/* @ts-ignore */}
       <SomeComponent {...props} />
     </ErrorBoundary>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useContext, createContext, ReactNode, Dispatch, ReactElement } from 'react';
 
-import firebase from 'firebase';
+import { User } from 'firebase/auth';
 
 import { auth } from '~/firebase-config';
 import useThunkReducer from '~/hooks/useThunkReducer';
@@ -11,13 +11,11 @@ import { AuthStateType, AUTH_SUCCESS } from './types';
 
 import { authReducer, authState } from './authReducer';
 
-type AuthUser = firebase.User;
-
 interface PropTypes {
   children: ReactNode;
 }
 
-export type AuthDispatch = Dispatch<Action<AuthUser>>;
+export type AuthDispatch = Dispatch<Action<User>>;
 
 const AuthStateContext = createContext<AuthStateType | undefined>(undefined);
 const AuthDispatchContext = createContext<AuthDispatch | undefined>(undefined);
@@ -48,7 +46,7 @@ export function AuthProvider({ children }: PropTypes): ReactElement {
 
   useEffect(
     () =>
-      auth.onAuthStateChanged(async (userAuth: firebase.User | null) => {
+      auth.onAuthStateChanged(async (userAuth: User | null) => {
         if (userAuth) {
           dispatch({ type: AUTH_SUCCESS, payload: userAuth });
         } else {

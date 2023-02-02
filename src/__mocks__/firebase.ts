@@ -1,7 +1,10 @@
-import * as firebase from 'firebase';
-
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import * as firebaseApp from 'firebase/app';
+// import * as firebaseAuth from 'firebase/auth';
+// @ts-ignore
 const onAuthStateChanged = jest.fn();
-
+// @ts-ignore
 const getRedirectResult = jest.fn(() => {
   return Promise.resolve({
     user: {
@@ -15,7 +18,7 @@ const getRedirectResult = jest.fn(() => {
 const sendEmailVerification = jest.fn(() => {
   return Promise.resolve('result of sendEmailVerification');
 });
-
+// @ts-ignore
 const sendPasswordResetEmail = jest.fn(() => Promise.resolve());
 
 const createUserWithEmailAndPassword = jest.fn(() => {
@@ -29,10 +32,12 @@ const signInWithEmailAndPassword = jest.fn(() => {
 const signInWithRedirect = jest.fn(() => {
   return Promise.resolve('result of signInWithRedirect');
 });
-
-const initializeApp = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+jest.spyOn(firebaseApp, 'initializeApp').mockImplementation(() => {
   return {
-    auth: () => {
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    auth() {
       return {
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword,
@@ -45,18 +50,18 @@ const initializeApp = jest.spyOn(firebase, 'initializeApp').mockImplementation((
   };
 });
 
-jest.spyOn(firebase, 'auth').mockImplementation(() => {
-  return {
-    onAuthStateChanged,
-    currentUser: {
-      displayName: 'testDisplayName',
-      email: 'test@test.com',
-      emailVerified: true,
-    },
-    getRedirectResult,
-    sendPasswordResetEmail,
-  };
-});
+// jest.spyOn(firebaseAuth, 'auth').mockImplementation(() => {
+//   return {
+//     onAuthStateChanged,
+//     currentUser: {
+//       displayName: 'testDisplayName',
+//       email: 'test@test.com',
+//       emailVerified: true,
+//     },
+//     getRedirectResult,
+//     sendPasswordResetEmail,
+//   };
+// });
 
-firebase.auth.FacebookAuthProvider = jest.fn(() => {});
-firebase.auth.GoogleAuthProvider = jest.fn(() => {});
+// firebaseApp.auth.FacebookAuthProvider = jest.fn(() => {});
+// firebaseApp.auth.GoogleAuthProvider = jest.fn(() => {});

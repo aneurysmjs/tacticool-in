@@ -6,6 +6,8 @@ import UserMenu from '~/components/core/UserMenu';
 import { NavLinks } from '~/shared/types';
 import './Navigation.css';
 
+type ClassNameProp = { isActive: boolean };
+
 const links: NavLinks = [
   {
     id: 0,
@@ -29,14 +31,17 @@ const links: NavLinks = [
   },
 ];
 
+const navbarLinkClass = 'navigation__link';
+
 const navLinks = links.length
   ? links.map(({ path, name, id }) => (
       <NavLink
         key={id}
-        activeClassName="navigation__link--active"
-        className="navigation__link"
+        className={({ isActive }: ClassNameProp): string =>
+          isActive ? `${navbarLinkClass} navigation__link--active` : navbarLinkClass
+        }
         role="menuitem"
-        to={`/${path}`}
+        to={path}
       >
         {name}
       </NavLink>
@@ -78,10 +83,11 @@ function Navigation(): ReactElement {
             ? links.map(({ path, name, id }) => (
                 <NavLink
                   key={id}
-                  activeClassName="navigation__link--active"
-                  className="navigation__mobile-link"
+                  className={({ isActive }: ClassNameProp): string =>
+                    isActive ? `${navbarLinkClass} navigation__link--active` : navbarLinkClass
+                  }
                   role="menuitem"
-                  to={`/${path}`}
+                  to={path}
                 >
                   {name}
                 </NavLink>

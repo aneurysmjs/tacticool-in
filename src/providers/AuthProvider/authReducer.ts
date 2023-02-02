@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import { User } from 'firebase/auth';
 
 import { Action } from '~/shared/types';
 
@@ -12,7 +12,7 @@ export const authState: AuthStateType = {
   error: undefined,
 };
 
-export function authReducer(state: AuthStateType, action: Action<firebase.User>): AuthStateType {
+export function authReducer(state: AuthStateType, action: Action<User>): AuthStateType {
   if (action.type === AUTH_LOADING) {
     return {
       ...state,

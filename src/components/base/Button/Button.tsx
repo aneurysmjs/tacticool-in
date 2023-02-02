@@ -5,7 +5,6 @@ import {
   MouseEventHandler,
   Ref,
   CSSProperties,
-  ReactType,
 } from 'react';
 import classNames from 'classnames';
 
@@ -22,7 +21,7 @@ export interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement | HTML
   outline?: boolean;
   size?: string;
   style?: CSSProperties;
-  tag?: string | ReactType;
+  tag?: string;
 }
 
 const Button: FunctionComponent<PropsType> = ({
@@ -79,6 +78,8 @@ const Button: FunctionComponent<PropsType> = ({
     <Tag
       type={Tag === 'button' && onClick ? 'button' : undefined}
       {...attributes}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       ref={innerRef}
       aria-label={ariaLabel || defaultAriaLabel}
       className={classes}

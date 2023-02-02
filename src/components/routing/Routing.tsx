@@ -9,6 +9,8 @@ import { useAuth } from '~/providers/AuthProvider';
 const Auth = lazy(() => import('~/components/pages/Auth/Auth'));
 
 const Routing: FunctionComponent = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state] = useAuth();
 

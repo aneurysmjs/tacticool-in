@@ -37,6 +37,8 @@ export default function useThunkReducer<R extends Reducer<any, any>, I>(
    * We use `useCallback` to preserve enhancedDispatch's identity on every render
    */
   const enhancedDispatch = useCallback(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     (action) => {
       if (typeof action === 'function') {
         action(dispatch);

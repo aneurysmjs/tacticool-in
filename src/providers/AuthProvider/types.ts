@@ -1,9 +1,9 @@
-import firebase from 'firebase';
+import { User } from 'firebase/auth';
 
 export interface AuthStateType {
   loading: boolean;
   result: {
-    user: firebase.User | undefined;
+    user: User | undefined;
   };
   error?: string | Error;
 }

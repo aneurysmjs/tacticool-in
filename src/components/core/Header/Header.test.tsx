@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { act, cleanup, RenderResult } from '@testing-library/react';
 

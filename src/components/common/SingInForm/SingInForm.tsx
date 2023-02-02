@@ -1,6 +1,6 @@
-import { ReactElement, Dispatch, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import firebase from 'firebase';
+import { FunctionComponent, Dispatch, useCallback } from 'react';
+import { redirect } from 'react-router-dom';
+import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
 
 import { Action } from '~/shared/types';
 import { auth } from '~/firebase-config';
@@ -24,27 +24,28 @@ const formValues = {
   password: '',
 };
 
-function SingInForm(): ReactElement {
+const SingInForm: FunctionComponent = () => {
   const [authState, dispatch] = useAuth();
-  const history = useHistory();
 
   const { values, handleSubmit, register, errors, isValid } = useFormValidation<User>({
     formValues,
   });
 
   const submit = useCallback(
-    async (dis: Dispatch<Action<firebase.auth.UserCredential>>): Promise<void> => {
+    async (dis: Dispatch<Action<UserCredential>>): Promise<void> => {
       dis({ type: AUTH_LOADING });
       try {
-        const payload = await auth.signInWithEmailAndPassword(values.email, values.password);
+        const payload = await signInWithEmailAndPassword(auth, values.email, values.password);
 
         dis({ type: AUTH_SUCCESS, payload });
-        history.push('/admin');
+        redirect('/admin');
       } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         dis({ type: AUTH_ERROR, error });
       }
     },
-    [history, values.email, values.password],
+    [values.email, values.password],
   );
 
   return (
@@ -84,7 +85,7 @@ function SingInForm(): ReactElement {
         />
         {authState.error && (
           <div className="alert alert-danger mt-3" role="alert">
-            {authState.error.message}
+            {authState.error as string}
           </div>
         )}
       </FormGroup>
@@ -118,6 +119,6 @@ function SingInForm(): ReactElement {
       <pre>{JSON.stringify(errors, null, 2)}</pre>
     </form>
   );
-}
+};
 
 export default SingInForm;

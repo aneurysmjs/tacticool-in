@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-template-curly-in-string */
-import React from 'react';
 import { render } from '@testing-library/react';
 import Input from './Input';
 
@@ -84,6 +84,8 @@ describe('Input', () => {
 
   it('should pass children when tag is a custom component', () => {
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const { container } = render(<Input tag={(props) => props.children}>Yo!</Input>);
 
     expect(container.textContent).toBe('Yo!');
@@ -120,6 +122,7 @@ describe('Input', () => {
   });
 
   it('should render with "form-control" class when size is nor "lg" nor "sm"', () => {
+    // @ts-ignore
     const { container } = render(<Input bsSize="5" />);
 
     expect(container.firstElementChild?.classList.contains('form-control-sm')).toBe(false);

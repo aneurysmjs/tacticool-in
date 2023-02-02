@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 type PropsType = {
   componentStack: string;
@@ -8,21 +8,24 @@ type PropsType = {
 const toTitle = (error: Error, componentStack: string): string =>
   `${error.toString()}\n\nThis is located at:${componentStack}`;
 
-const style = {
-  'alignTtems': 'center',
-  'boxSizing': 'border-box',
+const style: HTMLAttributes<HTMLDivElement>['style'] = {
+  alignItems: 'center',
+  boxSizing: 'border-box',
   color: '#FFF',
   cursor: 'help',
   display: 'flex',
-  'flexDirection': 'column',
+  flexDirection: 'column',
   height: '100%',
   maxHeight: '100vh',
   maxWidth: '100vw',
-  'textAlign': 'center',
+  textAlign: 'center',
   width: '100%',
 };
 
-const ErrorBoundaryFallbackComponent = ({ componentStack, error }: PropsType): ReactElement => (
+const ErrorBoundaryFallbackComponent: FunctionComponent<PropsType> = ({
+  componentStack,
+  error,
+}) => (
   <div style={style} title={toTitle(error, componentStack)}>
     <pre>{componentStack}</pre>
   </div>

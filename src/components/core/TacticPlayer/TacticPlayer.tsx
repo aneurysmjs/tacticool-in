@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FunctionComponent, SyntheticEvent, useState, useRef, useCallback } from 'react';
@@ -50,8 +52,6 @@ function formatTime(seconds: number): string {
   return `${minutes}:${secs}`;
 }
 
-function filterProgressBar(evt: SyntheticEvent) {}
-
 /**
  * Wrapper for video's currentTime and duration.
  *
@@ -64,8 +64,11 @@ function labelTime(time: number): JSX.Element {
 
 const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsType) => {
   const video = useRef<HTMLVideoElement>(null);
+  // @ts-ignore
   const [playing, setPlaying] = useState(false);
+  // @ts-ignore
   const [, rerender] = useState(() => {});
+  // @ts-ignore
   const [seekTime, setSeekTime] = useState(0);
 
   const [state, setState] = useState(initialState);
@@ -76,6 +79,7 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
    * @param {SyntheticEvent} evt
    * @returns {void}
    */
+  // @ts-ignore
   const handlePlay = (evt: SyntheticEvent): void => {
     video.current?.play();
     setPlaying(true);
@@ -91,6 +95,7 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
    * @param {SyntheticEvent} evt
    * @returns {void}
    */
+  // @ts-ignore
   const handlePause = (evt: SyntheticEvent): void => {
     video.current?.pause();
     setPlaying(false);
@@ -214,6 +219,9 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
    * @param {SyntheticEvent} evt
    * @returns {void}
    */
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const skip = useCallback((evt: SyntheticEvent) => {
     const target = evt.target as HTMLVideoElement;
     const skipValue = target.attributes[1].value;
@@ -237,6 +245,8 @@ const TacticPlayer: FunctionComponent<PropsType> = ({ onPlay, onPause }: PropsTy
     }
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const { progress, playbackRate, volume } = state;
 
   console.log('progress', progress);

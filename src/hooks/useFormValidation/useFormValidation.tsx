@@ -185,7 +185,7 @@ export default function useFormValidation<T>({
           type: SET_ERROR,
           payload: {
             submitError: {
-              message: err.message,
+              message: (err as Error).message,
             },
           },
         });

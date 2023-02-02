@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 // import reactLogo from '~/src/assets/img/brands/react-logo.png';
 // import tailwindLogo from '~/src/assets/img/brands/tailwind-logo.png';

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useCallback } from 'react';
 
 interface UseVideo {
@@ -6,7 +8,9 @@ interface UseVideo {
 
 function useVideo(): UseVideo {
   // const [video, setVideo] = useState<HTMLVideoElement>();
+  // @ts-ignore
   const [duration, setDuration] = useState();
+  // @ts-ignore
   const [curTime, setCurTime] = useState();
   const [playing, setPlaying] = useState(false);
 
